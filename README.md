@@ -15,6 +15,7 @@
 - Python 3
 - `python-telegram-bot`
 - SQLite
+- Ruff (linting & formatting)
 
 ## راه‌اندازی
 
@@ -27,12 +28,16 @@ cd dating-bot
 2. وابستگی‌ها را نصب کنید:
 ```bash
 pip install -r requirements.txt
+pip install -r requirements-dev.txt   # برای linting
 ```
 
 3. یک ربات در [@BotFather](https://t.me/BotFather) بسازید و توکن را بگیرید.
 
-4. توکن را به عنوان متغیر محیطی تنظیم کنید:
+4. توکن را تنظیم کنید:
 ```bash
+cp .env.example .env
+# سپس BOT_TOKEN را داخل .env پر کنید
+# یا:
 export BOT_TOKEN="your_bot_token_here"
 ```
 
@@ -41,11 +46,24 @@ export BOT_TOKEN="your_bot_token_here"
 python main.py
 ```
 
+## Linting با Ruff
+
+```bash
+# بررسی کد
+ruff check .
+
+# اصلاح خودکار
+ruff check . --fix
+
+# فرمت کردن کد
+ruff format .
+```
+
 ## نکات امنیتی مهم
 
 - **هرگز توکن ربات را در کد هاردکد نکنید.**
-- از متغیر محیطی `BOT_TOKEN` استفاده کنید.
-- فایل `.env` را به `.gitignore` اضافه کنید و در گیت پوش نکنید.
+- از متغیر محیطی `BOT_TOKEN` یا فایل `.env` استفاده کنید.
+- فایل `.env` را در گیت پوش نکنید.
 
 ## لایسنس
 
