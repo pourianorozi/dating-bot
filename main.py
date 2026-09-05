@@ -310,8 +310,10 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 def main() -> None:
     init_db()
-    # دریافت توکن از متغیر محیطی یا مستقیم
-    bot_token = os.getenv("BOT_TOKEN", "8352888066:AAEt5_ZFTmhWZvcvYhNV36Nx4MQjTLrg5KU")
+    # دریافت توکن از متغیر محیطی (امن)
+    bot_token = os.getenv("BOT_TOKEN")
+    if not bot_token:
+        raise ValueError("BOT_TOKEN environment variable is required. Set it before running the bot.")
     application = Application.builder().token(bot_token).build()
 
     conv_handler_profile = ConversationHandler(
